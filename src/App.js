@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import style from "./style";
 import {makeStyles} from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
+import Cell from "./Cell";
 
 const AppStyle = makeStyles(style);
 const App = () => {
@@ -87,18 +88,17 @@ const App = () => {
         setDragOver("");
     };
 
-    // const handleChange = e => {
-    //
-    //     console.log(e.target.value);
-    // }
+    const handleChange = e => {
 
+        console.log(e.target.value);
+    }
 
     return (
         <div className="App">
             <Table className={classes.table}>
                 <thead>
                 <tr className={classes.tr}>
-                    {cols.map(col => (
+                    {cols.map((col,index) => (
                         <th className={classes.th}
                             id={col}
                             key={col}
@@ -107,11 +107,19 @@ const App = () => {
                             onDragOver={handleDragOver}
                             onDrop={handleOnDrop}
                             onDragEnter={handleDragEnter}
-                            dragOver={col === dragOver}
-                            // contentEditable={"true"}
-                            // onClick={handleChange}
+                            // dragOver={col === dragOver}
+                            contentEditable
+                            // onChange={event => console.log
+                            onKeyUp={event => console.log(event.target.textContent)}
+                            dangerouslySetInnerHTML={{__html: col}}
                         >
-                            {col}
+                            {/*{col}*/}
+                            {/*<Cell value={col} onChange={(value) => {*/}
+                            {/*    let newCols = [...cols];*/}
+                            {/*    newCols[index] = value.target.value;*/}
+                            {/*    setCols(newCols)*/}
+
+                            {/*}} />*/}
                         </th>
                     ))}
                 </tr>
